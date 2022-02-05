@@ -37,6 +37,22 @@ X-Real-Ip: ${r['x-real-ip']}\n`);
     }
 });
 
-app.listen(listen_port, listen_addr, () => {
+const server = app.listen(listen_port, listen_addr, () => {
     console.log(`test-image started on ${listen_addr}:${listen_port}`);
 });
+
+const handlers = {
+    shutdown: function() {
+        server.close(() => {
+            console.log(`test-image stopped: ${this.origin}`);
+        });
+    },
+    reload: function() {
+        // do nothing
+        console.log(`test-image reloaded: ${this.origin}`);
+    }
+};
+
+process.on("SIGINT", handlers.shutdown.bind({origin: 'SIGINT'}));
+process.on("SIGTERM", handlers.shutdown.bind({origin: 'SIGTERM'}));
+process.on("SIGHUP", handlers.reload.bind({origin: 'SIGHUP'}));
