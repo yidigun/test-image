@@ -4,7 +4,7 @@
 
 It's just free. (Public Domain)
 
-See https://github.com/yidigun/test-mage
+See https://github.com/yidigun/test-image
 
 ## Changelog
 
