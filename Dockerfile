@@ -17,11 +17,10 @@ ENV NODEAPP=$NODEAPP
 ENV SERVERPORT=$SERVERPORT
 
 WORKDIR $APPROOT
+RUN apk add --update curl busybox-extras
 COPY nodeapp.sh /
 COPY app.js package*.json $APPROOT
-RUN apk update && \
-    apk add curl busybox-extras && \
-    npm ci --only=production
+RUN npm ci --only=production
 
 EXPOSE $SERVERPORT/tcp
 
