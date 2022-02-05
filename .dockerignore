@@ -1,0 +1,8 @@
+.git
+.gitignore
+Dockerfile
+Makefile
+README.md
+*.iml
+node_modules
+k8s

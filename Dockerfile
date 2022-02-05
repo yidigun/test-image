@@ -1,6 +1,29 @@
-FROM richarvey/nginx-php-fpm:latest
-MAINTAINER dklee@yidigun.com
+FROM docker.io/library/node:17-alpine
 
-RUN mv /var/www/html/index.php /var/www/html/phpinfo.php
-COPY index.php /var/www/html/
-COPY fastcgi.conf /etc/nginx/
+ARG IMG_TAG
+ARG IMG_NAME
+ARG LANG=ko_KR.UTF-8
+ARG TZ=Asia/Seoul
+ARG APPROOT=/webapp
+ARG NODEAPP=app.js
+ARG SERVERPORT=8080
+
+ENV IMG_NAME=$IMG_NAME
+ENV IMG_TAG=$IMG_TAG
+ENV LANG=$LANG
+ENV TZ=$TZ
+ENV APPROOT=$APPROOT
+ENV NODEAPP=$NODEAPP
+ENV SERVERPORT=$SERVERPORT
+
+WORKDIR $APPROOT
+COPY nodeapp.sh /
+COPY app.js package*.json $APPROOT
+RUN apk update && \
+    apk add curl busybox-extras && \
+    npm ci --only=production
+
+EXPOSE $SERVERPORT/tcp
+
+ENTRYPOINT [ "/nodeapp.sh" ]
+CMD [ "run" ]
