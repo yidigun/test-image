@@ -8,7 +8,7 @@ See https://github.com/yidigun/test-image
 
 ## Changelog
 
-* 2.1 - Upgrade node to ```22.x``` and express to ```4.9```.
+* 2.1 - Upgrade node to ```22.x``` and express to ```4.19```.
 * 2.0 - Change platform from php to node/express.
 * 1.0 - First release (deprecated)
 
