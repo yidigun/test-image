@@ -1,7 +1,7 @@
 REPO			= docker.io
 IMG_NAME		= yidigun/test-image
 
-TAG			= 2.0.1
+TAG				= 2.1
 EXTRA_TAGS		= latest
 TEST_ARGS		= -e SERVERPORT=8080 -p 8080:8080/tcp
 

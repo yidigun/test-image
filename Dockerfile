@@ -1,4 +1,4 @@
-FROM docker.io/library/node:17-alpine
+FROM docker.io/library/node:22-alpine
 
 ARG IMG_TAG
 ARG IMG_NAME
