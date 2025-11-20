@@ -1,4 +1,6 @@
+build
+local.mk
+buildkitd.toml
 *.iml
 node_modules
-k8s
-
+download

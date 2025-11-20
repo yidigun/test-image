@@ -1,0 +1,30 @@
+ARG BASE_IMAGE=alpine
+ARG BASE_VERSION=latest
+FROM golang:alpine AS builder
+
+COPY main.go go.mod /app/
+WORKDIR /app
+RUN go build -a -ldflags "-s -w" -o test-image
+
+FROM $BASE_IMAGE:$BASE_VERSION
+
+ARG BASE_IMAGE=alpine
+ARG BASE_VERSION=latest
+ARG IMAGE_NAME
+ARG IMAGE_TAG
+ARG LANG=C.UTF-8
+ARG TZ=UTC
+ARG SERVER_PORT=8080
+
+ENV BASE_IMAGE="$BASE_IMAGE"
+ENV BASE_VERSION="$BASE_VERSION"
+ENV IMAGE_NAME="$IMAGE_NAME"
+ENV IMAGE_TAG="$IMAGE_TAG"
+ENV LANG=$LANG
+ENV TZ=$TZ
+ENV SERVER_PORT=$SERVER_PORT
+
+COPY --from=builder /app/test-image /
+
+EXPOSE $SERVER_PORT/tcp
+CMD [ "/test-image" ]

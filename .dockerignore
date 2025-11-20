@@ -1,8 +1,13 @@
 .git
 .gitignore
-Dockerfile
-Makefile
-README.md
+/Dockerfile*
+/Makefile*
+/build
+/local.mk
+/README.md
 *.iml
 node_modules
 k8s
+docker-compose.yaml
+/download
+/backup.node
