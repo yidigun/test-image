@@ -28,7 +28,7 @@ type Addr struct {
 }
 
 func main() {
-	port := os.Getenv("SERVER_PORT")
+	port := os.Getenv("SERVERPORT")
 	if port == "" {
 		port = "8080"
 	}

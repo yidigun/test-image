@@ -8,7 +8,7 @@
 PUBLIC_REPO  = docker.io
 LOCAL_REPO   = anas:5000
 IMAGE_NAME   = yidigun/test-image
-IMAGE_TAG    = 3.0
+IMAGE_TAG    = 3.0.1
 BUILDER_IMAGE= $(LOCAL_REPO)/builder/test-image:$(IMAGE_TAG)
 
 # Release
@@ -170,8 +170,7 @@ build/linux/arm64 build/linux/amd64 build/windows/amd64:
 build/linux/arm64/test-image: $(GO_SRC) | build/linux/arm64
 	GOOS=linux GOARCH=arm64 go build $(GOFLAGS) -o $@
 build/linux/amd64/test-image: $(GO_SRC) | build/linux/amd64
-	GOOS=linux GOARCH=arm64 go build $(GOFLAGS) -o $@
+	GOOS=linux GOARCH=amd64 go build $(GOFLAGS) -o $@
 build/windows/amd64/test-image.exe: $(GO_SRC) | build/windows/amd64
 	GOOS=windows GOARCH=amd64 go build $(GOFLAGS) -o $@
-
 
